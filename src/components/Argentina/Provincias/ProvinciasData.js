@@ -1,16 +1,50 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-
-
-function ProvinciasData(props) {
-  return (
-    <div class="card col-4" id="cardstyle">
-        <div class="card-body">
-            <h5 class="card-title">{props.id}</h5>
-            <p class="card-text">{props.nombre}</p>
-            <a href={'' + props.link}>Municipios</a>
-        </div>
-    </div>
-  );
+class ProvinciasData extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: false,
+      provincias: []
+    };
+  }
+  
+  render() {
+    
+    return (
+      <table>
+        <ProvinciasHeader />
+        <p>ProvinciasData</p>
+        <ProvinciasBody Registros={this.state.provincias} />
+      </table>
+    )
+  }
 }
+
+const ProvinciasHeader = () =>{
+  return (
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Id</th>
+      </tr>
+    </thead>
+  )
+}
+
+const ProvinciasBody = props => {
+  alert('ProvinciasBody props' + props);
+    const rows = props.Registros.map((row, index) => {
+    return (
+      <tr key={index}>
+        <td>{row.nombre}</td>
+        <td>{row.id}</td>
+      </tr>
+    )
+  })
+  
+  return <tbody>{rows}</tbody>
+}
+
+
 export default ProvinciasData;
