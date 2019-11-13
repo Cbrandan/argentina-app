@@ -1,13 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import  listProvincias from './listProvincias';
+import ListProvincias from './components/Argentina/Provincias/ListProvincias';
 
 function App() {
   return (
     <div className="App">
-      <listProvincias/>
-     </div>
+      <p>Hola, antes de ListProvincias</p>
+      <ListProvincias/>
+      <p>Hola, despues de ListProvincias</p>
+    </div>
   );
 }
 export default App;
