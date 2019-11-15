@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  overflow: scroll;
+  border-radius: 44px 13px 83px 13px;
+  -moz-border-radius: 44px 13px 83px 13px;
+  -webkit-border-radius: 44px 13px 83px 13px;
+  border: 12px inset #90b4db;
+  background-color:#90b4db;
 }
 
 .App-header {
@@ -15,4 +21,17 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.detail {
+  background: #999;
+  height: 85vh;
+  width: calc(100% - 40px);
+  overflow: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.titulo {
+  background: rgb(60, 152, 168);
 }

@@ -21,24 +21,23 @@ class ListProvincias extends Component {
       .then(resData => {
         this.setState({
           loading: false,
-          provincias: resData,
+          provincias: resData.provincias,
+          cantidad: resData.cantidad,
         });
       })
-    }
+  }
 
   render() {
-    alert('loading' + this.state.loading);
-    alert('state.provincias' + this.state.provincias);
     if (this.state.loading) {
       return (
-        <div className="titulo">Cargando....</div>
+        <div className="titulo">Cargando...</div>
       );
     }
 
     return (
       <div className="container">
-        <Title nombre="Listado de provincias de Argentina" />
-        <ProvinciasData prov={this.state.provincias} />
+        <Title className="App-header" nombre="Listado de provincias de Argentina" />
+        <ProvinciasData prov={this.state.provincias} cant={this.state.cantidad}/>
       </div>
     )
   }
