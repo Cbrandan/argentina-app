@@ -10,6 +10,7 @@ import Title from '../../../title';
         departamentos: [],
         prov: props.Provincia
       };
+      //this.handleClick = this.handleClick.bind(this);
     }
 
 

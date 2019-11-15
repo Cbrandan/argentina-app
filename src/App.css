@@ -1,11 +1,5 @@
 .App {
-  text-align: center;
-  overflow: scroll;
-  border-radius: 44px 13px 83px 13px;
-  -moz-border-radius: 44px 13px 83px 13px;
-  -webkit-border-radius: 44px 13px 83px 13px;
-  border: 12px inset #90b4db;
-  background-color:#90b4db;
+  text-align: left;
 }
 
 .App-header {
@@ -34,4 +28,22 @@
 
 .titulo {
   background: rgb(60, 152, 168);
+}
+
+.provincias{
+  width: 50%;
+  display: inline-block;
+  border-radius: 44px 13px 83px 13px;
+  -moz-border-radius: 44px 13px 83px 13px;
+  -webkit-border-radius: 44px 13px 83px 13px;
+  border: 10px inset #90b4db;
+  background-color:#90b4db;
+}
+
+.departamentos{
+  width: 50%;
+  display: inline-block;
+
+  line-height: 28px;
+  text-align: left;
 }

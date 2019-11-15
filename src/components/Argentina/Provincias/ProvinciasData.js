@@ -1,62 +1,64 @@
-import ListDepartamentos from './Departamentos/ListDepartamentos'
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import Toolbar from '@material-ui/core/Toolbar';
+import getUrlDepByProv from '../../services/getUrlDepByProv';
+import ListDepartamentos from '../Provincias/Departamentos/ListDepartamentos';
 
 class ProvinciasData extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      provinces: props.prov,
-      quantity: props.cant
+      provincia: props.provincia
     };
   }
 
+  handleClick = () => {
+    console.log(this.state.provincia);
+    alert(getUrlDepByProv(this.state.provincia));
+    fetch(getUrlDepByProv(this.state.provincia), { method: 'GET' })
+      .then(response => {return response.json()})
+      .then(resData => {
+        this.setState({
+          loading: false,
+          departamentos: resData.departamentos,
+          cantidad: resData.cantidad,
+        });
+      })
+
+      alert(this.state.departamentos);
+  }
+
+  // componentDidMount() {
+  //   console.log('componentDidMount');
+  //   this.handleClick();
+  // }
+  // componentDidUpdate() {
+  //   console.log('componentDidUpdate');
+  // }
+
   render() {
     return (
-      <table>
-        <ProvinciasHeader />
-        <ProvinciasBody Registros={this.state.provinces} />
-        <ProvinciasTotal Total={this.state.quantity} />
-      </table>
+      <div>
+        <div>
+          <ProvinciasBody Registro={this.state.provincia} />
+          <button
+            onClick={this.handleClick} >
+            Ver
+          </button>
+        </div>
+        <div className="departamentos">
+          <ListDepartamentos Provincia={34}/>
+        </div>
+      </div>
     )
   }
 }
 
-const ProvinciasTotal = q => {
-  return (
-    <h2 className="titulo" >{q.Total}</h2>
-  )
-}
-
-const ProvinciasHeader = () => {
+const ProvinciasBody = props => {
   return (
     <Grid>
-      <Row>
-        <Col xs={6} md={3}>Id</Col>
-        <Col xs={6} md={3}>Nombre</Col>
-      </Row>
+      <Row>{props.Registro}</Row>
     </Grid>
   )
-}
-
-const ProvinciasBody = props => {
-  const rows = props.Registros.map((row, index) => {
-    return (
-      <Grid>
-        <Toolbar></Toolbar>
-        <Row key={index}>
-          <Col xs={6} md={3}>{row.id}</Col>
-          <Col xs={6} md={3}>{row.nombre}</Col>
-          <Col xs={6} md={3}>
-            <input type="button" value="Ver" onClick={<ListDepartamentos Provincia = {34}/>} />
-          </Col>
-        </Row>
-      </Grid>
-    )
-  })
-
-  return <tbody>{rows}</tbody>
 }
 
 export default ProvinciasData;

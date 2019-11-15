@@ -35,12 +35,18 @@ class ListProvincias extends Component {
     }
 
     return (
-      <div className="container">
+      <div className="provincias">
         <Title className="App-header" nombre="Listado de provincias de Argentina" />
-        <ProvinciasData prov={this.state.provincias} cant={this.state.cantidad}/>
+        <div>
+          {prvToComponents(this.state.provincias)}
+        </div>
       </div>
     )
   }
 }
+
+const prvToComponents = provincias => (
+  provincias.map(row => <ProvinciasData key={row.id} provincia={row.nombre} />)
+);
 
 export default ListProvincias;
