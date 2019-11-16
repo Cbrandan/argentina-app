@@ -1,52 +1,54 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import getUrlDepByProv from '../../services/getUrlDepByProv';
+import { Grid, Row, Col} from 'react-flexbox-grid';
 import ListDepartamentos from '../Provincias/Departamentos/ListDepartamentos';
+import { MDBBtn } from "mdbreact";
 
 class ProvinciasData extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loadingDat: false,
+      loadigDepto: false,
       provincia: props.provincia
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = () => {
-    console.log(this.state.provincia);
-    alert(getUrlDepByProv(this.state.provincia));
-    fetch(getUrlDepByProv(this.state.provincia), { method: 'GET' })
-      .then(response => {return response.json()})
-      .then(resData => {
-        this.setState({
-          loading: false,
-          departamentos: resData.departamentos,
-          cantidad: resData.cantidad,
-        });
-      })
-
-      alert(this.state.departamentos);
+   handleClick = (prevState) => {
+    this.setState({
+      loadingDepto: !prevState.loadingDepto,
+      provincia: this.key
+    });
   }
 
-  // componentDidMount() {
-  //   console.log('componentDidMount');
-  //   this.handleClick();
-  // }
-  // componentDidUpdate() {
-  //   console.log('componentDidUpdate');
-  // }
+  //   componentDidMount() {
+  //    console.log('componentDidMount');
+  //    this.handleClick();
+  //  }
+  //  componentDidUpdate() {
+  //    console.log('componentDidUpdate');
+  //  }
 
   render() {
     return (
       <div>
+        <Grid>
+          <Row>
+            <Col xs>
+              <ProvinciasBody Registro={this.state.provincia} />
+            </Col>
+            <Col xs>
+              <MDBBtn color="primary"
+                onClick={this.handleClick} >
+                {this.state.loadigDepto ? 'Ocultar departamentos' : 'Ver departamentos'}
+              </MDBBtn>
+            </Col>
+          </Row>
+        </Grid>
         <div>
-          <ProvinciasBody Registro={this.state.provincia} />
-          <button
-            onClick={this.handleClick} >
-            Ver
-          </button>
-        </div>
-        <div className="departamentos">
-          <ListDepartamentos Provincia={34}/>
+        {this.state.loadingDepto ? 
+            <h1>Cargando departamentos...</h1> :
+            <ListDepartamentos provincia={this.state.provincia} />}
         </div>
       </div>
     )
@@ -55,9 +57,9 @@ class ProvinciasData extends Component {
 
 const ProvinciasBody = props => {
   return (
-    <Grid>
-      <Row>{props.Registro}</Row>
-    </Grid>
+    <div>
+      <h2>{props.Registro}</h2>
+    </div>
   )
 }
 

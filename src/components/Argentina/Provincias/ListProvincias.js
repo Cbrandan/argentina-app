@@ -8,19 +8,19 @@ class ListProvincias extends Component {
   constructor() {
     super();
     this.state = {
-      loading: false,
+      loadingPrv: false,
       provincias: []
     };
   }
 
   componentDidMount() {
-    this.setState({ loading: true })
+    this.setState({ loadingPrv: true })
 
     fetch(`${url_api}provincias`, { method: 'GET' })
       .then(response => response.json())
       .then(resData => {
         this.setState({
-          loading: false,
+          loadingPrv: false,
           provincias: resData.provincias,
           cantidad: resData.cantidad,
         });
@@ -28,7 +28,7 @@ class ListProvincias extends Component {
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.state.loadingPrv) {
       return (
         <div className="titulo">Cargando...</div>
       );
@@ -37,9 +37,7 @@ class ListProvincias extends Component {
     return (
       <div className="provincias">
         <Title className="App-header" nombre="Listado de provincias de Argentina" />
-        <div>
-          {prvToComponents(this.state.provincias)}
-        </div>
+        {prvToComponents(this.state.provincias)}
       </div>
     )
   }
