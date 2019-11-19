@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.6.1",
     "bootstrap": "^4.3.1",
+    "google-maps-react": "^2.0.2",
     "jquery": "^3.4.1",
     "mdbreact": "^4.22.1",
     "popper.js": "^1.16.0",

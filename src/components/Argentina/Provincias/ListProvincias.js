@@ -22,7 +22,7 @@ class ListProvincias extends Component {
         this.setState({
           loadingPrv: false,
           provincias: resData.provincias,
-          cantidad: resData.cantidad,
+          centroide: resData.centroide
         });
       })
   }
@@ -44,7 +44,7 @@ class ListProvincias extends Component {
 }
 
 const prvToComponents = provincias => (
-  provincias.map(row => <ProvinciasData key={row.id} provincia={row.nombre} />)
+  provincias.map(row => <ProvinciasData key={row.id} provincia={row.nombre}/>)
 );
 
 export default ListProvincias;

@@ -23,6 +23,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -33,16 +34,18 @@ nav {
 }
 
 .detail {
-  background: #999;
-  height: 85vh;
-  width: calc(100% - 40px);
+
+  background: #90b4db;
+  height: 40vh;
+  width: calc(100% - 25%);
   overflow: auto;
   padding-right: 20px;
-  padding-left: 20px;
+  padding-left: 25%;
+  text-align: left;
 }
 
 .titulo {
-  background: rgb(60, 152, 168);
+  text-align: center;
 }
 
 .provincias{
