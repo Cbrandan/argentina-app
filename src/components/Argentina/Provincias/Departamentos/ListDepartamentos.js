@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import getUrlDepByProv from '../../../services/getUrlDepByProv';
 import Title from '../../../title';
 import Mapa from '../Mapa';
+import { Grid, Col } from 'react-flexbox-grid';
 
 class ListDepartamentos extends Component {
   constructor(props) {
@@ -36,28 +37,29 @@ class ListDepartamentos extends Component {
     return (
       <div>
         <Title className="titulo" nombre="Listado de Departamentos por provincia" />
-        <div className="detail">
-          {deptosToComponents(this.state.departamentos)}
-        </div>
-        <div>
-          {/* <Mapa Lat={this.state.centroide.lat} Lon={this.state.centroide.lon}/> */}
-          <Mapa Lat={-26.8753965086829} Lng={-54.6516966230371}/>
-        </div>
+          <Grid className="detail">
+            <Col xs>
+              {deptosToComponents(this.state.departamentos)}
+            </Col>
+            <Col xs>
+              {/* <Mapa Pcia={this.props.provincia}/> */}
+            </Col>
+          </Grid>
       </div>
-    )
-  }
-}
-
-const deptosToComponents = departamentos => (
+        )
+      }
+    }
+    
+    const deptosToComponents = departamentos => (
   departamentos.map(row => <DeptosData key={row.id} depto={row.nombre} />)
-);
-
+      );
+      
 const DeptosData = props => {
   return (
     <div>
-      <h2>{props.depto}</h2>
-    </div>
-  )
-}
-
+          <h2>{props.depto}</h2>
+        </div>
+        )
+      }
+      
 export default ListDepartamentos;

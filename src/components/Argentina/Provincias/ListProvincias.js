@@ -21,8 +21,7 @@ class ListProvincias extends Component {
       .then(resData => {
         this.setState({
           loadingPrv: false,
-          provincias: resData.provincias,
-          centroide: resData.centroide
+          provincias: resData.provincias
         });
       })
   }
@@ -35,6 +34,7 @@ class ListProvincias extends Component {
     }
 
     return (
+      alert(this.state.provincias),
       <div className="provincias">
         <Title className="App-header" nombre="Listado de provincias de Argentina" />
         {prvToComponents(this.state.provincias)}

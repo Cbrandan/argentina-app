@@ -23,7 +23,7 @@ class ProvinciasData extends Component {
         <Grid>
           <Row>
             <Col xs>
-              <ProvinciasBody Registro={this.props.provincia} />
+              <ProvinciasBody Registro={this.props.provincia}/>
             </Col>
             <Col xs>
               <MDBBtn color="primary"
